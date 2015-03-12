@@ -8,16 +8,16 @@
     if (array_key_exists('URL', $_POST)) {
     	
     	$curlHandler = curl_init($_POST['URL']);
-//     	$curlHandler = curl_init('www.google.com');
+//     	$curlHandler = curl_init('http://www.pockettactics.com');
 		curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
-    	$html = curl_exec();
-    	curl_close($curlHandler);
+    	$html = curl_exec($curlHandler);
     	
-    	echo $html;
-    	$parser = new HtmlParser($html);
+       	$parser = new HtmlParser($html);
+    	$parser->parse();
     	foreach( $parser->tagTable as $tag=>$count ){
-    		echo $tag, ":", $count;
+    		echo $tag, ":", $count, PHP_EOL;
     	}
+    	curl_close($curlHandler);
     }
     ?>
 	<form action="/" method="post">
