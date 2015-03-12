@@ -6,7 +6,13 @@
     require( "app/HtmlParser.php");
     
     if (array_key_exists('URL', $_POST)) {
-    	$html = curl_exec(curl_init($_POST['URL']));
+    	
+    	$curlHandler = curl_init($_POST['URL']);
+//     	$curlHandler = curl_init('www.google.com');
+		curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
+    	$html = curl_exec();
+    	curl_close($curlHandler);
+    	
     	echo $html;
     	$parser = new HtmlParser($html);
     	foreach( $parser->tagTable as $tag=>$count ){
