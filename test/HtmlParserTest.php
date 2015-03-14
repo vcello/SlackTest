@@ -4,6 +4,7 @@ require 'app/HtmlParser.php';
 $test = new HtmlParserTest();
 $test->testCountTagsWithValidHtml();
 //$test->testCountTagsWithInvalidHtml();
+$test->testAnnotateHtml();
 
 //class HtmlParserTest extends PHPUnit_Framework_TestCase
 class HtmlParserTest
@@ -37,5 +38,12 @@ class HtmlParserTest
 			// yay	
 		}
 		
+	}
+	
+	public function testAnnotateHtml(){
+		$validHtml = "<html><head><title>Title</title></head><div id=1><div id=12></div></div><div id=2><span></span></div></html>";
+		$parser = new HtmlParser($validHtml);
+		echo $parser->annotate();
+// 		echo htmlentities($parser->originalHtml());
 	}
 }

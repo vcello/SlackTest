@@ -18,6 +18,8 @@
     		echo $tag, ":", $count, PHP_EOL;
     	}
     	curl_close($curlHandler);
+    	
+    	echo htmlspecialchars($html);
     }
     ?>
 	<form action="/" method="post">
