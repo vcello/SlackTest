@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 <style>
+#header {
+	text-align:center;
+	padding:1px;
+}
 #tags {
 	line-height:30px;
 	background-color:#eeeeee;

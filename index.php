@@ -1,9 +1,20 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("p").click(function(){
+		$(this).css("background", "yellow");
+	});
+});
+</script>
 </head>
 
  <body>
+ 	<div id="header">
+ 	Slack Exercise
+ 	</div>
     <?php
     
     require( "app/HtmlParser.php");
@@ -21,7 +32,7 @@
     <div id="tags">
 	<?php
     	foreach( $parser->tagTable as $tag=>$count ){
-    		echo $tag, ":", $count, "<br>", PHP_EOL;
+    		echo "<p>", $tag, ":", $count, "</p>", PHP_EOL;
     	}
     ?>
  	</div>
