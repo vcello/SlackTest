@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+<style>
+#tags {
+	line-height:30px;
+	background-color:#eeeeee;
+	width:80px;
+	height:500px;
+	float:left;
+	padding:1px; 
+}
+#htmlContent {
+	width:350px;
+	height:500px;
+	float:left;
+	padding:10px;
+}
+ </style> 

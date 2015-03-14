@@ -14,14 +14,24 @@
     	
        	$parser = new HtmlParser($html);
     	$parser->parse();
+    ?>
+    <div id="tags">
+	<?php
     	foreach( $parser->tagTable as $tag=>$count ){
-    		echo $tag, ":", $count, PHP_EOL;
+    		echo $tag, ":", $count, "<br>" PHP_EOL;
     	}
+    ?>
+ 	</div>
+ 	
+ 	<div id="htmlContent">
+ 	<?php 
     	curl_close($curlHandler);
     	
     	echo htmlspecialchars($html);
     }
     ?>
+    </div>
+    
 	<form action="/" method="post">
 		<div><input name="URL" rows="1" cols="60"></input></div>
 		<div><input type="submit" value="Fetch HTML"></div>
