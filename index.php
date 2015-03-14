@@ -3,10 +3,17 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
+var previouslyClicked;
 $(document).ready(function(){
-	$("p").click(function(){
-		$(this).css("background", "yellow");
-	});
+	$("p").click(
+		function() {
+			if( $(this) !== previouslyClicked ){
+				previouslyClicked.css("background", "white");
+				previouslyClicked = $(this);
+				$(this).css("background", "yellow");
+			}
+		} 
+	);
 });
 </script>
 </head>
