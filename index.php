@@ -1,4 +1,7 @@
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
 
  <body>
     <?php
@@ -18,7 +21,7 @@
     <div id="tags">
 	<?php
     	foreach( $parser->tagTable as $tag=>$count ){
-    		echo $tag, ":", $count, "<br>" PHP_EOL;
+    		echo $tag, ":", $count, "<br>", PHP_EOL;
     	}
     ?>
  	</div>
