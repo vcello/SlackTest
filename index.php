@@ -7,15 +7,14 @@
 <script>
 // click handler
 $(document).ready(function(){
-	$("p").click(
+	$("span").click(
 		function() {
-			$("p").css("background", "white"); // unhighlight previously clicked tag
+			$("span").css("background", "white"); // unhighlight previously clicked tag
 			$("#htmlContent").css("background", "white"); // unhighlight html
 			$(this).css("background", "yellow"); // highlight currently clicked tag
 			
 			// highlight in html		
 			var searchString = $(this).html();
-			alert(searchString);
 			$("#" + searchString).css("background", "white"); // highlight html
 
 			
