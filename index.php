@@ -3,11 +3,11 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="js/jquery.highlight-5.js"></script>
-<script>
 
+<script>
 // click handler
 $(document).ready(function(){
-	$("#tag").click(
+	$("p").click(
 		function() {
 			$("p").css("background", "white"); // unhighlight previously clicked tag
 			$("#htmlContent").css("background", "white"); // unhighlight html
@@ -16,7 +16,10 @@ $(document).ready(function(){
 			// highlight in html		
 			var searchString = $(this).html();
 			alert(searchString);
-			$("#htmlContent").highlight(searchString);
+			$("#" + searchString).css("background", "white"); // highlight html
+
+			
+// 			$("#" + searchString).highlight(searchString);
 // 			var text = $("#htmlContent").html();
 // 			var re = new RegExp(searchString, "i");
 // 			var matchedText = text.match(re);
@@ -38,7 +41,6 @@ $(document).ready(function(){
     if (array_key_exists('URL', $_POST)) {
     	
     	$curlHandler = curl_init($_POST['URL']);
-//     	$curlHandler = curl_init('http://www.pockettactics.com');
 		curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
     	$html = curl_exec($curlHandler);
     	
@@ -63,7 +65,9 @@ $(document).ready(function(){
  	<?php 
     	curl_close($curlHandler);
     	
-    	echo htmlspecialchars($html);
+//     	echo htmlspecialchars($html);
+    	echo $parser->annotate();
+    	 
     }
     ?>
     </div>
