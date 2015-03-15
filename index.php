@@ -15,6 +15,7 @@ $(document).ready(function(){
 			
 			// highlight in html		
 			var searchString = $(this).html();
+			alert(searchString);
 			$("#" + searchString).css("background", "white"); // highlight html
 
 			
