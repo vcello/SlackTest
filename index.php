@@ -9,13 +9,13 @@
 $(document).ready(function(){
 	$("#tag").click(
 		function() {
-        	// unhighlight in html
 			$("p").css("background", "white"); // unhighlight previously clicked tag
 			$("#htmlContent").css("background", "white"); // unhighlight html
 			$(this).css("background", "yellow"); // highlight currently clicked tag
 			
 			// highlight in html		
 			var searchString = $(this).html();
+			alert(searchString);
 			$("#htmlContent").highlight(searchString);
 // 			var text = $("#htmlContent").html();
 // 			var re = new RegExp(searchString, "i");
