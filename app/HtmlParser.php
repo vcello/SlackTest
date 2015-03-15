@@ -62,7 +62,7 @@ class HtmlParser
 		// match on "<tagname" or "<tagname attr=x" or "</tagname"
 		$openTagPattern = "/\&lt;(\/?)(\s*\w*)/";
 		// and replace with "<span id=tagname><tagname" 
-		$openTagReplacement = "<span id=$2>&lt;$1$2";
+		$openTagReplacement = "<span class=$2>&lt;$1$2";
 		
 		// match on ">"
 		$closeTagPattern = "/\&gt;/";
