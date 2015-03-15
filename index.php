@@ -2,16 +2,25 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/jquery.highlight-5.js"></script>
 <script>
-var previouslyClicked;
+
+// click handler
 $(document).ready(function(){
 	$("p").click(
 		function() {
-			if( $(this) !== previouslyClicked ){
-				previouslyClicked.css("background", "white");
-				previouslyClicked = $(this);
-				$(this).css("background", "yellow");
-			}
+        	// unhighlight in html
+			$("p").css("background", "white"); // unhighlight previously clicked tag
+			$("#htmlContent").css("background", "white"); // unhighlight html
+			$(this).css("background", "yellow"); // highlight currently clicked tag
+			
+			// highlight in html		
+			var searchString = $(this).html();
+			$("#htmlContent").highlight(searchString);
+// 			var text = $("#htmlContent").html();
+// 			var re = new RegExp(searchString, "i");
+// 			var matchedText = text.match(re);
+// 			$('p:contains(' + matchedText + ')').css("background", "yellow");		
 		} 
 	);
 });
@@ -32,6 +41,12 @@ $(document).ready(function(){
 //     	$curlHandler = curl_init('http://www.pockettactics.com');
 		curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
     	$html = curl_exec($curlHandler);
+    	
+    	
+    	// error handling
+		if (curl_error($c))
+			die(curl_error($c));
+		$status = curl_getinfo($c, CURLINFO_HTTP_CODE);
     	
        	$parser = new HtmlParser($html);
     	$parser->parse();
