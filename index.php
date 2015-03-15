@@ -7,7 +7,7 @@
 
 // click handler
 $(document).ready(function(){
-	$("p").click(
+	$("#tag").click(
 		function() {
         	// unhighlight in html
 			$("p").css("background", "white"); // unhighlight previously clicked tag
@@ -54,7 +54,7 @@ $(document).ready(function(){
     <div id="tags">
 	<?php
     	foreach( $parser->tagTable as $tag=>$count ){
-    		echo "<p>", $tag, ":", $count, "</p>", PHP_EOL;
+    		echo "<p><span id='tag'>", $tag, "</span>: (", $count, ")</p>", PHP_EOL;
     	}
     ?>
  	</div>
