@@ -48,7 +48,8 @@ $(document).ready(function(){
 		if (curl_error($c))
 			die(curl_error($c));
 		$status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-    	
+		curl_close($curlHandler);
+		
        	$parser = new HtmlParser($html);
     	$parser->parse();
     ?>
@@ -62,11 +63,7 @@ $(document).ready(function(){
  	
  	<div id="htmlContent">
  	<?php 
-    	curl_close($curlHandler);
-    	
-//     	echo htmlspecialchars($html);
-    	echo $parser->annotate();
-    	 
+    	echo $parser->annotate(); 
     }
     ?>
     </div>
