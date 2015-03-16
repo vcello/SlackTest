@@ -36,7 +36,7 @@ class HtmlParser
 				RecursiveIteratorIterator::SELF_FIRST);
 		
 		foreach($docIter as $node) {
-			if($node != ""){
+			if($node->tagName != ""){
 				$this->tagTable[$node->tagName]++;
 			}			
 		}
