@@ -2,8 +2,6 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/jquery.highlight-5.js"></script>
-
 <script>
 // click handler
 $(document).ready(function(){
@@ -15,14 +13,8 @@ $(document).ready(function(){
 			
 			// highlight in html		
 			var searchString = $(this).html();
-			$("." + searchString).css("background", "yellow"); // highlight html
-
-			
-// 			$("#" + searchString).highlight(searchString);
-// 			var text = $("#htmlContent").html();
-// 			var re = new RegExp(searchString, "i");
-// 			var matchedText = text.match(re);
-// 			$('p:contains(' + matchedText + ')').css("background", "yellow");		
+			$("." + searchString).css("background", "yellow"); // highlight in html
+		
 		} 
 	);
 });
@@ -33,6 +25,14 @@ $(document).ready(function(){
  	<div id="header">
  	Slack Exercise
  	</div>
+ 	
+ 	<div id="theForm">
+ 	<form action="/" method="post">
+		<div><input name="URL" rows="1" cols="60"></input></div>
+		<div><input type="submit" value="Fetch HTML"></div>
+	</form>
+	</div>
+    
     <?php
     
     require( "app/HtmlParser.php");
@@ -70,11 +70,6 @@ $(document).ready(function(){
     }
     ?>
     </div>
-    
-	<form action="/" method="post">
-		<div><input name="URL" rows="1" cols="60"></input></div>
-		<div><input type="submit" value="Fetch HTML"></div>
-	</form>
 </body>
 
 </html>
