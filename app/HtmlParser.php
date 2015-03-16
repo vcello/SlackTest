@@ -1,14 +1,11 @@
 <?php
-require 'RecursiveDOMIterator.php';
+require 'RecursiveDOMIterator.php'; // attribution: https://github.com/salathe/spl-examples/wiki/RecursiveDOMIterator
+
 class HtmlParser
 {
-	/**
-	 * @var string
-	 */
 	private $originalHtml;
 	public $tagTable = array();
-	private $doc;
-	
+	private $doc;	
 	
 	public function __construct($originalHtml)
 	{
@@ -25,7 +22,7 @@ class HtmlParser
 		return $this->originalHtml;
 	}
 	
-	public function parse() {
+	public function parseTags() {
 // 		if(!$this->doc->validate()){
 // 			// TODO: HTMLPurifier stuff here
 // 			// otherwise:
@@ -39,25 +36,14 @@ class HtmlParser
 				RecursiveIteratorIterator::SELF_FIRST);
 		
 		foreach($docIter as $node) {
-			$this->tagTable[$node->tagName]++;
-			
+			if($node != ""){
+				$this->tagTable[$node->tagName]++;
+			}			
 		}
 	}
 	
-	public function annotate() {
+	public function wrapTagsInSpansWithClasses() {
 		$encodedHtml = htmlspecialchars($this->originalHtml);
-		
-// 		$openTagPattern = "/\&lt;(\/?)(\w*)[\s\=\'\"\d]*\&gt;/";
-// 		$replacement = "<span id=$2>&lt;$1$2&gt;</span>";
-		//$openTagPattern = "/\&lt;(\w*)[^\&]*\&gt;(.*)\&lt;\/(\w*)&gt;/";
-		//$replacement = "<span id=$1>&lt;$1&gt;</span>$2<span id=$1>&lt;/$3&gt;</span>";
-		
-		
-// 		$openTagPattern = "/\&lt;(\w*)([\s\=\'\"\d]*)\&gt;/";
-// 		$openTagReplacement = "<span id=$1$2>&lt;$1&gt;</span>";
-		
-// 		$closeTagPattern = "/\&lt;\/(\w*)\&gt;/";
-// 		$closeTagReplacement = "<span id=$1>&lt;$1&gt;</span>";
 		
 		// match on "<tagname" or "<tagname attr=x" or "</tagname"
 		$openTagPattern = "/\&lt;(\/?)(\s*\w*)/";

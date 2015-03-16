@@ -18,7 +18,7 @@ class HtmlParserTest
 		$validHtml = "<html><head><title>Title</title></head><div id=1><div id=12></div></div><div id=2><span></span></div></html>";
 		
 		$parser = new HtmlParser($validHtml);
-		$parser->parse();
+		$parser->parseTags();
 		$tagTable = $parser->tagTable;
 		
 		assert($tagTable['html'] == 1, "Incorrect html count: " . $tagTable['html']);
@@ -33,7 +33,7 @@ class HtmlParserTest
 		$invalidHtml = "<html><head><title>Title</title><div></div></html>";
 		$parser = new HtmlParser($invalidHtml);
 		try{
-			$parser->parse();
+			$parser->parseTags();
 			$tagTable = $parser->tagTable;
 								
 			assert(false, "Invalid HTML excpeiton not thrown");
@@ -50,14 +50,14 @@ class HtmlParserTest
 		// &lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;
 		
 		// So the expected annotated output should look like:
-		// <span id=html>&lt;html&gt;</span>
-		// <span id=body>&lt;body&gt;</span>
-		// <span id=body>&lt;/body&gt;</span>
-		// <span id=html>&lt;/html&gt;</span>
+		// <span class=html>&lt;html&gt;</span>
+		// <span class=body>&lt;body&gt;</span>
+		// <span class=body>&lt;/body&gt;</span>
+		// <span class=html>&lt;/html&gt;</span>
 		
-		$expectedAnnotatedHtml = "<span id=html>&lt;html&gt;</span><span id=body>&lt;body&gt;</span><span id=body>&lt;/body&gt;</span><span id=html>&lt;/html&gt;</span>";
+		$expectedAnnotatedHtml = "<span class=html>&lt;html&gt;</span><span class=body>&lt;body&gt;</span><span class=body>&lt;/body&gt;</span><span class=html>&lt;/html&gt;</span>";
 		$parser = new HtmlParser($validHtml);
-		$annotatedHtml = $parser->annotate();
+		$annotatedHtml = $parser->wrapTagsInSpansWithClasses();
 		
 		assert($annotatedHtml == $expectedAnnotatedHtml, "Simple annotations failed");
 		
@@ -70,19 +70,16 @@ class HtmlParserTest
 		// &lt;html&gt;&lt;body&gt;&lt;div id='aDiv'&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
 		
 		// So the expected annotated output should look like:
-		// <span id=html>&lt;html&gt;</span>
-		// <span id=body>&lt;body&gt;</span>
-		// <span id=div>&lt;div id='aDiv'&gt;</span>
-		// <span id=div>&lt;/div&gt;</span>
-		// <span id=body>&lt;/body&gt;</span>
-		// <span id=html>&lt;/html&gt;</span>
+		// <span class=html>&lt;html&gt;</span>
+		// <span class=body>&lt;body&gt;</span>
+		// <span class=div>&lt;div id='aDiv'&gt;</span>
+		// <span class=div>&lt;/div&gt;</span>
+		// <span class=body>&lt;/body&gt;</span>
+		// <span class=html>&lt;/html&gt;</span>
 		
-		$expectedAnnotatedHtml = "<span id=html>&lt;html&gt;</span><span id=body>&lt;body&gt;</span><span id=div>&lt;div id='aDiv'&gt;</span><span id=div>&lt;/div&gt;</span><span id=body>&lt;/body&gt;</span><span id=html>&lt;/html&gt;</span>";
+		$expectedAnnotatedHtml = "<span class=html>&lt;html&gt;</span><span class=body>&lt;body&gt;</span><span class=div>&lt;div id='aDiv'&gt;</span><span class=div>&lt;/div&gt;</span><span class=body>&lt;/body&gt;</span><span class=html>&lt;/html&gt;</span>";
         $parser = new HtmlParser($validHtml);
-		$annotatedHtml = $parser->annotate();
-		
-		echo PHP_EOL, htmlspecialchars($validHtml), PHP_EOL, PHP_EOL;	
-		echo $annotatedHtml, PHP_EOL, PHP_EOL;
+		$annotatedHtml = $parser->wrapTagsInSpansWithClasses();
 		
 		assert($annotatedHtml == $expectedAnnotatedHtml, "Complex annotations failed");
 

@@ -4,19 +4,23 @@
 	text-align:center;
 	padding:1px;
 }
+#theForm {
+	text-align:center;
+	padding:1px;
+}
 #tags {
-	line-height:30px;
-	background-color:#eeeeee;
+	line-height:10px;
 	width:80px;
-	height:500px;
 	float:left;
 	padding:1px; 
+	overflow:scroll;
 }
 #htmlContent {
 	width:350px;
 	height:500px;
 	float:left;
 	padding:10px;
+	overflow:scroll;
 }
 
 .highlight { 
