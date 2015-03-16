@@ -25,6 +25,13 @@ $(document).ready(function(){
  	<div id="header">
  	Slack Exercise
  	</div>
+ 	
+ 	<div id="theForm">
+ 	<form action="/" method="post">
+		<div><input name="URL" rows="1" cols="60"></input></div>
+		<div><input type="submit" value="Fetch HTML"></div>
+	</form>
+	</div>
     
     <?php
     
@@ -44,7 +51,7 @@ $(document).ready(function(){
 		curl_close($curlHandler);
 		
        	$parser = new HtmlParser($html);
-    	$parser->parse();
+    	$parser->parseTags();
     ?>
     <div id="tags">
 	<?php
@@ -56,17 +63,10 @@ $(document).ready(function(){
  	
  	<div id="htmlContent">
  	<?php 
-    	echo $parser->annotate(); 
+    	echo $parser->wrapTagsInSpansWithClasses(); 
     }
     ?>
     </div>
-    
-    <div id="theForm">
- 	<form action="/" method="post">
-		<div><input name="URL" rows="1" cols="60"></input></div>
-		<div><input type="submit" value="Fetch HTML"></div>
-	</form>
-	</div>
 	
 </body>
 
