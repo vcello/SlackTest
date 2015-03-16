@@ -14,13 +14,14 @@
 	float:left;
 	padding:1px; 
 	overflow:scroll;
+	border:1px;
 }
 #htmlContent {
-	width:350px;
-	height:500px;
+	width:700px;
 	float:left;
 	padding:10px;
 	overflow:scroll;
+	border:1px;
 }
 
 .highlight { 
