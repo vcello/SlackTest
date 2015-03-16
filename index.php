@@ -5,7 +5,7 @@
 <script>
 // click handler
 $(document).ready(function(){
-	$("#tag").find("span").click(
+	$("#tags").find("span").click(
 		function() {
 			$("span").css("background", "white"); // unhighlight previously clicked tag
 			$("#htmlContent").css("background", "white"); // unhighlight html
